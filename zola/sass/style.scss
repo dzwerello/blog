@@ -1,0 +1,172 @@
+body {
+  /* font-family: "Merriweather", serif; */
+  /* font-optical-sizing: auto; */
+  /* font-weight: 300; */
+  /* font-style: normal; */
+  /* font-variation-settings: "wdth" 100; */
+  /* font-size: 23px; */
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 23px;
+  margin: 0;
+}
+
+$small: 550px;
+$medium: 1050px;
+$focus-color: #007BFF;
+
+img {
+  max-width: 100%;
+}
+
+.icon {
+  width: 24px;
+  vertical-align: middle;
+  padding: 0 6px;
+}
+
+.subtitle {
+  display: inline-flex;
+  align-items: center;
+}
+
+main {
+  @media screen and (min-width: $small) {
+    max-width: 80%;
+  }
+
+  @media screen and (min-width: $medium) {
+    max-width: 800px;
+  }
+
+  margin: 0 auto 0;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: black;
+  color: white;
+
+  &:after {
+    content: "";
+    display: block;
+    height: 2px;
+    background-color: #f2f2f2;
+    width: 100%;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &:active {
+    color: inherit;
+  }
+}
+
+h1 {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 47px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto 0;
+
+  @media screen and (min-width: $small) {
+    max-width: 80%;
+  }
+
+  @media screen and (min-width: $medium) {
+    max-width: 960px;
+
+    h1 {
+      font-size: 23px;
+      font-weight: 600;
+    }
+
+    ul {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}
+
+.nav-list {
+  display: inline-flex;
+  padding: 0;
+  column-gap: 2em;
+  list-style: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+
+  button {
+    width: fit-content;
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: "Inter";
+    font-weight: 500;
+    border: 2px solid transparent;
+
+    &:hover {
+      background: lighten(black, 20%);
+    }
+
+    &:active {
+      background: lighten(black, 30%);
+    }
+
+    &:focus {
+      outline: none;
+      border: 2px solid $focus-color;
+    }
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  input,
+  textarea {
+    padding: 8px;
+    border: 2px solid #f2f2f2;
+    font-family: "Inter";
+
+    &:focus {
+      outline: none;
+      border: 2px solid black;
+    }
+  }
+
+  textarea {
+    height: 10em;
+    resize: none;
+  }
+}
