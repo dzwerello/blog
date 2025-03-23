@@ -49,4 +49,3 @@ jobs:
           PAGES_BRANCH: master
           BUILD_DIR: ./zola
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPOSITORY: dzwerello/dzwerello.github.io
