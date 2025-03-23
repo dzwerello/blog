@@ -48,5 +48,5 @@ jobs:
         env:
           PAGES_BRANCH: master
           BUILD_DIR: ./zola
-          TOKEN: ${{ secrets.PUBLIC_TOKEN }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: dzwerello/dzwerello.github.io
