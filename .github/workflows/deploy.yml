@@ -36,12 +36,6 @@ jobs:
         run: |
           bun install
 
-      - name: Echo
-        env:
-          TEST: ${{ vars.TEST }}
-        run: |
-          echo $TEST
-
       - name: Fetch content
         env:
           BLOG_ID: ${{ secrets.BLOG_ID }}
