@@ -36,16 +36,16 @@ jobs:
         run: |
           bun install
 
-      - name: 'Create local env file'
+      - name: Echo
+        env:
+          TEST: ${{ vars.TEST }}
+        run: |
+          echo $TEST
+
+      - name: Fetch content
         env:
           BLOG_ID: ${{ secrets.BLOG_ID }}
           API_TOKEN: ${{ secrets.API_TOKEN }}
-        run: |
-          touch .env.local
-          echo BLOG_ID=${{ secrets.BLOG_ID }} >> .env.local
-          echo API_TOKEN: ${{ secrets.API_TOKEN }} >> .env.local
-
-      - name: Fetch content
         run: |
           bun fetch.js
 
