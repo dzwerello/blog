@@ -36,10 +36,17 @@ jobs:
         run: |
           bun install
 
+      - name: Echo test secret
+        env:
+          TEST: ${{ secrets.TEST }}
+        run: |
+          echo $TEST
+
       - name: Fetch content
         env:
           BLOG_ID: ${{ secrets.BLOG_ID }}
           API_TOKEN: ${{ secrets.API_TOKEN }}
+          TEST: ${{ secrets.TEST }}
         run: |
           bun fetch.js
 
