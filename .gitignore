@@ -1,4 +1,6 @@
 /zola/public
+/zola/content/posts/*
+!/zola/content/posts/_index.md
 
 **/*.trace
 **/*.zip

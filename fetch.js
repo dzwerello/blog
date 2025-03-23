@@ -18,7 +18,7 @@ const response = await notion.databases.query({
 });
 
 async function toMarkdown(pages) {
-  const folderPath = "./zola/content/blog";
+  const folderPath = "./zola/content/posts";
   const files = await fs.readdir(folderPath);
 
   for (const file of files) {
