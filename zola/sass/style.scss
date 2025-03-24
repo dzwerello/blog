@@ -34,14 +34,13 @@ img {
 
 main {
   @media screen and (min-width: $small) {
-    max-width: 80%;
+    margin: 0 48px;
   }
 
   @media screen and (min-width: $medium) {
     max-width: 800px;
+    margin: 0 auto 0;
   }
-
-  margin: 0 auto 0;
 }
 
 header {
@@ -85,22 +84,40 @@ h1 {
 
 .nav {
   display: flex;
+  position: relative;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
   max-width: 960px;
   margin: 0 auto 0;
 
-  @media screen and (min-width: $small) {
-    max-width: 80%;
+  @media screen and (min-width: $small) and (max-width: $medium) {
+    max-width: 100%;
+    height: 5em;
+    justify-content: center;
+
+    #menu-open {
+      position: absolute;
+      left: 32px;
+      filter: invert(1);
+      width: 36px;
+    }
+
+    ul {
+      display: none;
+    }
   }
 
   @media screen and (min-width: $medium) {
     max-width: 960px;
+    justify-content: space-between;
 
     h1 {
       font-size: 23px;
       font-weight: 600;
+    }
+
+    #menu-open {
+      display: none;
     }
 
     ul {
@@ -108,6 +125,56 @@ h1 {
       font-weight: 500;
     }
   }
+}
+
+#menu-popup {
+  position: fixed;
+  background-color: white;
+  color: black;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 1000;
+
+  header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 5em;
+    background-color: white;
+
+    img {
+      margin-left: 32px;
+      width: 36px;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      height: 2px;
+      background-color: black;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      z-index: 1001;
+    }
+  }
+
+  ul {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 48px;
+    padding: 0;
+    list-style: none;
+    font-size: 28px;
+    font-weight: 500;
+  }
+}
+
+#menu-popup.hidden {
+  display: none;
 }
 
 .nav-list {

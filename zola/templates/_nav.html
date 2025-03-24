@@ -1,5 +1,6 @@
 <header>
   <div class="nav">
+    <img id="menu-open" class="icon" src="{{ get_url(path="icons/list.svg") }}" alt="icon">
     <h1 class="title">Legal Labyrinth</h1>
     <ul class="nav-list">
       <li><a href="{{ get_url(path='/') }}">Home</a></li>
@@ -7,4 +8,15 @@
       <li><a href="{{ get_url(path='@/contact.md') }}">Contact</a></li>
     </ul>
   </div>
+  <div id="menu-popup" class="hidden">
+    <header>
+      <img id="menu-close" class="icon" src="{{ get_url(path="icons/x.svg") }}" alt="icon">
+    </header>
+    <ul class="menu-list">
+      <li><a href="{{ get_url(path='/') }}">Home</a></li>
+      <li><a href="{{ get_url(path='@/posts/_index.md') }}">Posts</a></li>
+      <li><a href="{{ get_url(path='@/contact.md') }}">Contact</a></li>
+    </ul>
+  </div>
 </header>
+<script src="{{ get_url(path='js/menu.js') }}"></script>
