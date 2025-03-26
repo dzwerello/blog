@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block content %}
+<h1 class="title">{{ page.title }}</h1>
+{{ page.content | safe }}
+<form action="https://formspree.io/f/mdkegeae" method="POST">
+  <label>
+    <input type="email" name="email" placeholder="Email" autocomplete="off" spellcheck="false" required/>
+  </label>
+  <label>
+    <textarea name="message" placeholder="Message" spellcheck="false" required></textarea>
+  </label>
+  <button type="submit">Send</button>
+</form>
+{% endblock content %}

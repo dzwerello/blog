@@ -18,8 +18,8 @@ const response = await notion.databases.query({
 });
 
 async function toMarkdown(pages) {
-  const folderPath = "./zola/content/posts";
-  const files = await fs.readdir(folderPath);
+  const folderPath = "./zola/content";
+  const files = await fs.readdir(path.join(folderPath, "posts"));
 
   for (const file of files) {
     if (file === "_index.md") continue;
@@ -53,24 +53,36 @@ async function toMarkdown(pages) {
     const mdBlocks = await n2m.pageToMarkdown(pageId);
     const mdString = n2m.toMarkdownString(mdBlocks);
 
-    const content = `+++
-title = "${title}"
-date = ${date}
-draft = ${draft}
-[extra]
-${length ? `\nlength = ${length.split(":")[1]}` : ""}
-+++
-${mdString.parent}
-`;
-
-    title = title
+    const snake_title = title
       .toLowerCase() // Convert to lowercase
       .replace(/[^\w\s]/g, "") // Remove punctuation (keep letters, numbers, and spaces)
       .replace(/\s+/g, "_"); // Replace spaces with underscores
 
+    let cat = properties["Multi-select"].multi_select[0].name
+      .toLowerCase() // Convert to lowercase
+      .replace(/[^\w\s]/g, "") // Remove punctuation (keep letters, numbers, and spaces)
+      .replace(/\s+/g, "_"); // Replace spaces with underscores
+    let isPost = cat == "posts";
+    let filePath = ""
+    if (isPost) {
+      filePath = `posts/${snake_title}.md`
+    } else {
+      filePath = `${cat}.md`
+    }
+
+    const content = `+++
+title = "${title}"
+date = ${date}
+draft = ${draft}
+${!isPost ? `base_html = "${cat}.html"` : ""}
+[extra]
+${length ? `length = ${length.split(":")[1]}` : ""}
++++
+${mdString.parent}
+`;
     try {
-      await fs.writeFile(path.join(folderPath, `${title}.md`), content);
-      console.log(`uploading ${title}.md`);
+      await fs.writeFile(path.join(folderPath, filePath), content);
+      console.log(`uploading ${snake_title}.md`);
     } catch (err) {
       console.error("err:", err);
     }
