@@ -19,11 +19,23 @@ const response = await notion.databases.query({
 
 async function toMarkdown(pages) {
   const folderPath = "./zola/content";
-  const files = await fs.readdir(path.join(folderPath, "posts"));
 
-  for (const file of files) {
+  const content = await fs.readdir(folderPath);
+  for (const file of content) {
+    const filePath = `${folderPath}/${file}`;
+    const stat = await fs.stat(filePath);
+
+    if (stat.isDirectory()) continue;
     if (file === "_index.md") continue;
-    const filePath = path.join(folderPath, file);
+
+    await fs.unlink(filePath);
+  }
+
+  const postsPath = "./zola/content/posts";
+  const posts = await fs.readdir(postsPath);
+  for (const file of posts) {
+    if (file === "_index.md") continue;
+    const filePath = path.join(postsPath, file);
     await fs.unlink(filePath);
   }
 
@@ -33,6 +45,8 @@ async function toMarkdown(pages) {
     const pageId = page.id;
 
     const properties = page.properties;
+
+    console.log(page, properties);
 
     const nameKey = Object.keys(properties).find(
       (key) => key.trim() === "Name",
@@ -44,11 +58,16 @@ async function toMarkdown(pages) {
       (key) => key.trim() === "Draft",
     );
 
+    const draft = properties[draftKey].checkbox;
+
+    if (draft) {
+      continue;
+    }
+
     let title = properties[nameKey].title[0].text.content;
     let splitDate = properties[dateKey].date.start.split("T");
     let date = splitDate[0];
     let length = splitDate[1];
-    const draft = properties[draftKey].checkbox;
 
     const mdBlocks = await n2m.pageToMarkdown(pageId);
     const mdString = n2m.toMarkdownString(mdBlocks);
@@ -74,7 +93,7 @@ async function toMarkdown(pages) {
 title = "${title}"
 date = ${date}
 draft = ${draft}
-${!isPost ? `base_html = "${cat}.html"` : ""}
+${!isPost ? `template = "${cat}.html"` : ""}
 [extra]
 ${length ? `length = ${length.split(":")[1]}` : ""}
 +++

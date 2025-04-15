@@ -198,6 +198,7 @@ form {
     cursor: pointer;
     font-family: "Inter";
     font-weight: 500;
+    font-size: 16px;
     border: 2px solid transparent;
 
     &:hover {
@@ -217,13 +218,15 @@ form {
   label {
     display: flex;
     flex-direction: column;
-
   }
 
   input,
   textarea {
     padding: 8px;
     border: 2px solid #f2f2f2;
+
+
+    font-size: 16px;
     font-family: "Inter";
 
     &:focus {
