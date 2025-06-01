@@ -51,6 +51,18 @@ header {
   background: black;
   color: white;
 
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("icons/maze.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.2;
+    z-index: 0;
+  }
+
   &:after {
     content: "";
     display: block;
@@ -90,6 +102,11 @@ h1 {
   width: 100%;
   max-width: 960px;
   margin: 0 auto 0;
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 
   @media screen and (min-width: $small) and (max-width: $medium) {
     max-width: 100%;
@@ -186,10 +203,15 @@ h1 {
   list-style: none;
 }
 
+ul {
+    list-style-type: "- ";
+}
+
 form {
   display: flex;
   flex-direction: column;
   row-gap: 1em;
+  margin-bottom: 1em;
 
   button {
     width: fit-content;
