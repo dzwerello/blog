@@ -1,10 +1,25 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+
+{% block content %}
 <h1 class="title">{{ section.title }}</h1>
-<ul>
-  <!-- If you are using pagination, section.pages will be empty.
-           You need to use the paginator object -->
+
+<ul class="posts-list">
   {% for page in section.pages %}
-  <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+  <li class="post-item">
+    <h2><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h2>
+    
+    <span class="subtitle">
+        {{ page.date | date(format="%B %d, %Y") }} 
+        {% if page.extra.length is defined %}
+          | <img class="icon" src="{{ get_url(path="icons/clock.svg") }}" alt="icon"> {{ page.extra.length }} min
+        {% endif %}
+    </span>
+    
+    <div class="post-summary">
+      {{ page.summary | safe }}
+      <a class="read-more-inline" href="{{ page.permalink | safe }}">read more →</a>
+    </div>
+  </li>
   {% endfor %}
 </ul>
 {% endblock content %}

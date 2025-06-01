@@ -28,6 +28,7 @@ img {
 }
 
 .subtitle {
+  color: #777;
   display: inline-flex;
   align-items: center;
 }
@@ -109,10 +110,10 @@ h1 {
 
   @media screen and (min-width: $medium) {
     max-width: 960px;
-    justify-content: space-between;
+    justify-content: flex-end;
 
     h1 {
-      font-size: 23px;
+      font-size: 48px;
       font-weight: 600;
     }
 
@@ -123,6 +124,7 @@ h1 {
     ul {
       font-size: 18px;
       font-weight: 500;
+      transform: translate(0, 2.2em);
     }
   }
 }
@@ -239,4 +241,69 @@ form {
     height: 10em;
     resize: none;
   }
+}
+
+
+.posts-list {
+  list-style: none; /* Remove bullets */
+  padding: 0;
+  margin: 2em 0;
+}
+
+.post-item {
+  margin-bottom: 2.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid #ddd;
+}
+
+.post-item h2 {
+  font-family: "Playfair Display", serif;
+  font-weight: 200;
+  font-size: 1.5em;
+}
+
+.post-item h2 a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.post-item h2 a:hover {
+  color: lighten(black, 50%);
+}
+
+.post-date {
+  color: #777;
+  margin-bottom: 0.8em;
+}
+
+.post-summary {
+  margin-bottom: 0.8em;
+  margin-top: 1em;
+
+  p {
+    display: inline;
+  }
+}
+
+.read-more {
+  font-weight: semibold;
+  text-decoration: none;
+  transition: text-decoration 0.2s ease;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+.read-more-inline {
+  display: inline-block;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: text-decoration 0.2s ease;
+}
+
+.read-more-inline:hover {
+  text-decoration: underline;
 }
