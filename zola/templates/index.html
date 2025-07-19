@@ -6,4 +6,11 @@
     <div>
       {{ index.content | safe }}
     </div>
+    {% set about = get_page(path="about.md") %}
+    <div class="about-me-container">
+      <div class="about-me-content">
+        <img id="about-me-pic" src="{{ get_url(path="image.jpg") }}"/>
+        {{ about.content | safe }}
+      </div>
+    </div>
 {% endblock content %}
